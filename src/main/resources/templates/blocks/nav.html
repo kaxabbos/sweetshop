@@ -1,0 +1,31 @@
+<nav th:fragment="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient"
+     style="background: linear-gradient(90deg, #f49fc8, #f49fc8);">
+    <div class="container"><a class="navbar-brand logo" href="/">SweetShop</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Кондитерские изделия</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">О нас</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/category">Категории</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/place">Данные доставки</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/places">Места доставки</a></li>
+                <li th:if="${role == 'MANAGER' or role == 'CLIENT'}" class="nav-item"><a class="nav-link" href="/products/my">Заказы кондитерских изделий</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/products/add">Добавить кондитерское изделие</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/stats">Данные деятельности</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users">База клиентов</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login">Вход</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/reg">Регистрация</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item">
+                    <form action="/logout" method="post">
+                        <button class="btn" type="submit" style="color: var(--bs-navbar-color);font-weight: bold;">
+                            Выход
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
